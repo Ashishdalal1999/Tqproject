@@ -69,33 +69,51 @@ public class LibraryImplementation implements LibraryManagement {
 		String title = sc.next();
 		if (hs.isEmpty()) {
 			throw new NotFoundException();
-		} else {
+		} 
+		boolean isPresent=false;
 			for (Map.Entry<Integer, Book> bk : hs.entrySet()) {
 				if (title.equals(bk.getValue().getTitle())) {
-					System.out.println(bk.getKey() + " " + bk.getValue());
+					isPresent=true;
+					break;
 				}
-
+			}
+		if(isPresent==true)
+		   {
+			for (Map.Entry<Integer, Book> bk : hs.entrySet()) {	
+				if (title.equals(bk.getValue().getTitle())) {
+				System.out.println(bk.getKey() + " " + bk.getValue());
+				}
+			}
+		   }
 				else {
 					throw new NotFoundException();
 				}
 			}
-		}
-	}
-
 	@Override
 	public void searchByAuthor() {
 		System.out.println("Enter a book author you want to search");
 		String author = sc.next();
 		if (hs.isEmpty()) {
 			throw new NotFoundException();
-		} else {
+		} 
+		boolean isPresent=false;
 			for (Map.Entry<Integer, Book> au : hs.entrySet()) {
 				if (author.equals(au.getValue().getAuthor())) {
-					System.out.println(au.getKey() + " " + au.getValue());
-				} else {
-					throw new NotFoundException();
+					isPresent=true;
+					break;
+				} 
 				}
+		if(isPresent==true)
+		{        
+			for (Map.Entry<Integer, Book> au : hs.entrySet()) {
+				if (author.equals(au.getValue().getAuthor())) {
+			System.out.println(au.getKey() + " " + au.getValue());
+		}
 			}
+		}
+		else
+		{
+			throw new NofFoundException();
 		}
 	}
 
@@ -117,18 +135,31 @@ public class LibraryImplementation implements LibraryManagement {
 
 	@Override
 	public void displayBooksByGenre() {
-		System.out.println("Enter book genre you want to search");
-		String genre = sc.next();
-		if (hs.isEmpty()) {
-			throw new NotFoundException();
-		} else {
-			for (Map.Entry<Integer, Book> gn : hs.entrySet()) {
-				if (genre.equals(gn.getValue().getGenre())) {
-					System.out.println(gn.getKey() + " " + gn.getValue());
-				} else {
-					throw new NotFoundException();
-				}
-			}
-		}
-	}
+    System.out.println("Enter book genre you want to search");
+    String genre = sc.next();
+    if (hs.isEmpty()) {
+      throw new NotFoundException();
+    }
+    boolean isPresent=false;
+    
+        
+    for (Map.Entry<Integer, Book> gn : hs.entrySet()) {
+        if (genre.equals(gn.getValue().getGenre())) {
+          isPresent=true;
+          break;
+        } 
+        }
+    if(isPresent==true)
+    {
+      for (Map.Entry<Integer, Book> gn : hs.entrySet()) {
+        if (genre.equals(gn.getValue().getGenre())) {
+      System.out.println(gn.getKey() + " " + gn.getValue());
+    }
+      }
+    }
+    else
+    {
+      throw new NotFoundException();
+    }
+  }
 }
